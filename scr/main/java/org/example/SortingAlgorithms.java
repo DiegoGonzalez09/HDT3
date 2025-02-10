@@ -112,3 +112,58 @@ public class SortingAlgorithms {
             System.arraycopy(output, 0, arr, 0, arr.length);
         }
     }
+
+    public static void bucketSort(Integer[] arr) {
+        if (arr.length == 0) return;
+
+        int max = Arrays.stream(arr).max(Integer::compare).orElse(0);
+        int min = Arrays.stream(arr).min(Integer::compare).orElse(0);
+        int bucketCount = (max - min) / arr.length + 1;
+
+        List<List<Integer>> buckets = new ArrayList<>();
+        for (int i = 0; i < bucketCount; i++)
+            buckets.add(new ArrayList<>());
+
+        for (int num : arr) {
+            int index = (num - min) / arr.length;
+            buckets.get(index).add(num);
+        }
+
+        int idx = 0;
+        for (List<Integer> bucket : buckets) {
+            Collections.sort(bucket);
+            for (int num : bucket) {
+                arr[idx++] = num;
+            }
+        }
+    }
+
+    public static void heapSort(Integer[] arr) {
+        int n = arr.length;
+
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapify(arr, n, i);
+
+        for (int i = n - 1; i > 0; i--) {
+            swap(arr, 0, i);
+            heapify(arr, i, 0);
+        }
+    }
+
+    private static void heapify(Integer[] arr, int n, int i) {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        if (left < n && arr[left] > arr[largest])
+            largest = left;
+
+        if (right < n && arr[right] > arr[largest])
+            largest = right;
+
+        if (largest != i) {
+            swap(arr, i, largest);
+            heapify(arr, n, largest);
+        }
+    }
+}
