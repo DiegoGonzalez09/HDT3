@@ -1,1 +1,6 @@
-
+Size: 10, Time: 11000 ns, Sorted: true
+Size: 100, Time: 186600 ns, Sorted: true
+Size: 500, Time: 3521800 ns, Sorted: true
+Size: 1000, Time: 1391100 ns, Sorted: true
+Size: 2000, Time: 4301600 ns, Sorted: true
+Size: 3000, Time: 7838800 ns, Sorted: true
